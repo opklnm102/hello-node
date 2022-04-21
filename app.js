@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 const express = require('express');
 
 const app = express();
@@ -28,15 +30,14 @@ const startGracefulShutdown = () => {
   state.isShutdown = true;
 
   setTimeout(() => {
-    server.close()
-      .then(() => {
-        console.info('shutdown complete');
-        process.exit(0);
-      })
-      .catch((err) => {
-        console.error('Error happened during graceful shutdown', err);
-        process.exit(1);
-      });
+    server.close(() => {
+      console.info('shutdown complete');
+      process.exit(0);
+    },
+    (err) => {
+      console.error('Error happened during graceful shutdown', err);
+      process.exit(1);
+    });
   }, TIMEOUT_IN_MS);
 };
 
