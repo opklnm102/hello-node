@@ -13,11 +13,22 @@ deps:
 run: deps
 	node app.js
 
+.PHONY: test
+test:
+	docker build --build-arg VERSION="$(VERSION)" \
+                 -t $(IMAGE) -f ./Dockerfile --target test .
+
 .PHONY: build-image
 build-image:
 	echo "build image... version=${VERSION}"
 	docker build --build-arg VERSION="$(VERSION)" \
                  -t $(IMAGE) -f ./Dockerfile .
+
+.PHONY: build-dev-image
+build-dev-image:
+	echo "build dev image... version=${VERSION}"
+	docker build --build-arg VERSION="$(VERSION)" \
+                 -t $(IMAGE) -f ./Dockerfile --target test .
 
 .PHONY: push-image
 push-image: build-image

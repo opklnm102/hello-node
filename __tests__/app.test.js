@@ -1,4 +1,6 @@
-const App = require('../app');
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+/* eslint-disable no-console */
 
 describe('Integration with app', () => {
   beforeAll(() => {
@@ -6,6 +8,6 @@ describe('Integration with app', () => {
   });
 
   test('First', async () => {
-
+    await console.info('done');
   });
 });

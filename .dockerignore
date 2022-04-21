@@ -1,6 +1,11 @@
 *.md
 
 .dockerignore
+Dockerfile
+docker-compose.yml
+
+Makefile
+
 .git
 .gitignore
 .idea
@@ -8,3 +13,5 @@ node_modules/
 logs
 *.log
 npm-debug.log*
+
+nginx/
